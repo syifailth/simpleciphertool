@@ -158,6 +158,27 @@ def gcd(a, b):
         a, b = b, a % b
     return a
 
+def affine_decrypt(cipher, a, b):
+    """Melakukan dekripsi Affine Cipher pada teks"""
+    if gcd(a, 26) != 1:
+        raise ValueError("a dan 26 harus coprime untuk affine cipher bekerja dengan benar.")
+    
+    result = ""
+    a_inv = mod_inverse(a, 26)
+    for char in cipher:
+        if char.isalpha():
+            if char.isupper():
+                y = ord(char) - ord('A')
+                decrypted_char = (a_inv * (y - b)) % 26
+                result += chr(decrypted_char + ord('A'))
+            else:
+                y = ord(char) - ord('a')
+                decrypted_char = (a_inv * (y - b)) % 26
+                result += chr(decrypted_char + ord('a'))
+        else:
+            result += char
+    return result
+
 def encrypt_affine(text, a, b):
     """Melakukan enkripsi Affine Cipher pada teks"""
     a  = int(float(a))
@@ -179,3 +200,10 @@ def encrypt_affine(text, a, b):
         else:
             result += char
     return result
+
+def mod_inverse(a, m):
+    """Menghitung modular inverse dari a dengan modulus m"""
+    for x in range(1, m):
+        if (a * x) % m == 1:
+            return x
+    return -1
