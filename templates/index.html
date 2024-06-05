@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Simple Cipher Tool</title>
+</head>
+<body>
+    <h1>Simple Cipher Tool</h1>
+    <form action="" method="get">
+        <button><a href="decrypt.html" title="Pindah Halaman">APAPAPAPAPA</a></button>
+    </form>
+    
+    <form method="POST", action="/">
+        <label for="plain_text">Plain Text:</label><br>
+        <textarea id="plain_text" name="plain_text" rows="4" cols="50"></textarea><br><br>
+        
+        <input type="radio" name="algorithm" id="vigenre", value="vigenre">
+        <label for="vigenre">Vigenre</label><br>
+        <input type="radio" name="algorithm" id="caesar", value="caesar">
+        <label for="caesar">Caesar</label><br>
+        <input type="radio" name="algorithm" id="affine", value="affine">
+        <label for="affine">Affine</label><br>
+        <input type="radio" name="algorithm" id="playfair", value="playfair">
+        <label for="playfair">Playfair</label><br>
+        <input type="radio" name="algorithm" id="rot13", value="rot13">
+        <label for="rot13">Rot13</label><br><br>
+
+        <!-- {% if decision == 'vigenre' %}
+            <p>You chose the first option!</p>
+        {% elif decision == 'caesar' %}
+            <p>You selected the second option!</p>
+        {% elif decision == 'affine' %}
+            <p>The third option is your choice!</p>
+        {% elif decision == 'playfair' %}
+            <p>The fourth option is your choice!</p>
+        {% else %}
+            <p>No valid option selected.</p>
+        {% endif %} -->
+        <label for="shift">key:</label><br>
+        <input type="text" id="key" name="key"><br><br>
+        <label for="shift2">key2:</label><br>
+        <input type="text" id="key2" name="key2"><br><br>
+        <input type="submit" value="Encrypt">
+    </form> 
+    {% if encrypted_text %}
+        <h2>Encrypted {{ decision }} Text:</h2>
+        <p>{{ encrypted_text }}</p>
+    {% endif %}
+</body>
+</html>
