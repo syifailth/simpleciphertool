@@ -3,50 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Simple Cipher Tool</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Simple Cipher Tool</h1>
-    <form action="" method="get">
-        <button><a href="decrypt.html" title="Pindah Halaman">APAPAPAPAPA</a></button>
-    </form>
-    
-    <form method="POST", action="/">
-        <label for="plain_text">Plain Text:</label><br>
-        <textarea id="plain_text" name="plain_text" rows="4" cols="50"></textarea><br><br>
-        
-        <input type="radio" name="algorithm" id="vigenre", value="vigenre">
-        <label for="vigenre">Vigenre</label><br>
-        <input type="radio" name="algorithm" id="caesar", value="caesar">
-        <label for="caesar">Caesar</label><br>
-        <input type="radio" name="algorithm" id="affine", value="affine">
-        <label for="affine">Affine</label><br>
-        <input type="radio" name="algorithm" id="playfair", value="playfair">
-        <label for="playfair">Playfair</label><br>
-        <input type="radio" name="algorithm" id="rot13", value="rot13">
-        <label for="rot13">Rot13</label><br><br>
+    <div class="container mt-5" style="background-color: #B5C18E;">
+        <div class="row justify-content-center" style="background-color: #C7B7A3;">
+            <div class="col-6">
+                <h2 class="text-center m-4">Simple Cipher Tool</h2>
 
-        <!-- {% if decision == 'vigenre' %}
-            <p>You chose the first option!</p>
-        {% elif decision == 'caesar' %}
-            <p>You selected the second option!</p>
-        {% elif decision == 'affine' %}
-            <p>The third option is your choice!</p>
-        {% elif decision == 'playfair' %}
-            <p>The fourth option is your choice!</p>
-        {% else %}
-            <p>No valid option selected.</p>
-        {% endif %} -->
-        <label for="shift">key:</label><br>
-        <input type="text" id="key" name="key"><br><br>
-        <label for="shift2">key2:</label><br>
-        <input type="text" id="key2" name="key2"><br><br>
-        <input type="submit" value="Encrypt">
-    </form> 
-    {% if encrypted_text %}
-        <h2>Encrypted {{ decision }} Text:</h2>
-        <p>{{ encrypted_text }}</p>
-    {% endif %}
+            </div>
+        </div>
+        <form method="POST" action="/">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <h4 class="text-center m-2">Algorithm Type</h4>
+                        <ul class="nav justify-content-center">
+                            <li class="nav-item mx-3">
+                                <input type="radio" name="algorithm" id="vigenre" value="vigenre" class="form-check-input">
+                            <label for="vigenre" class="form-check-label">Vigenre</label>
+                            </li>
+                            <li class="nav-item">
+                                <input type="radio" name="algorithm" id="caesar" value="caesar" class="form-check-input">
+                                <label for="caesar" class="form-check-label">Caesar</label>
+                            </li>
+                            <li class="nav-item mx-3">
+                                <input type="radio" name="algorithm" id="affine" value="affine" class="form-check-input">
+                                <label for="affine" class="form-check-label">Affine</label>
+                            </li>
+                            <li class="nav-item">
+                                <input type="radio" name="algorithm" id="playfair" value="playfair" class="form-check-input">
+                                <label for="playfair" class="form-check-label">Playfair</label>
+                            </li>
+                            <li class="nav-item mx-3"> 
+                                <input type="radio" name="algorithm" id="rot13" value="rot13" class="form-check-input">
+                                <label for="rot13" class="form-check-label">Rot13</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <div class="mb-3">
+                        <label for="plain_text" class="form-label">Plain Text:</label>
+                        <textarea id="plain_text" name="plain_text" rows="2" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <div class="mb-3">
+                        <label for="key" class="form-label">Key:</label>
+                        <input type="text" id="key" name="key" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <div class="mb-3">
+                        <label for="key2" class="form-label">Key2:</label>
+                        <input type="text" id="key2" name="key2" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-3">
+                    <div class="d-grid m-2">
+                        <input type="submit" value="Encrypt" class="btn btn-success">
+                    </div>
+                </div>
+                <div class="col-3">
+                    <form action="decrypt.html" method="get">
+                        <div class="d-grid m-2">
+                            <button type="submit" class="btn btn-primary" title="Pindah Halaman">APAPAP</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </form> 
+        
+
+        <form action="">
+            <div class="row justify-content-center mt-2">
+                <div class="col-6">
+                    {% if encrypted_text %}
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Output Encrypted {{ decision }} : </label> 
+                        <textarea id="plain_text" name="plain_text" rows="1" class="form-control">{{ encrypted_text }}</textarea>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 </body>
 </html>
