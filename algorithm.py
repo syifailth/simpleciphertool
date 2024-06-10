@@ -116,6 +116,24 @@ def playfair_encrypt(plaintext, key):
     
     return encrypt_playfair
 
+def playfair_decrypt(ciphertext, key):
+    matrix = create_playfair_matrix(key)
+    plaintext = ""
+    
+    for i in range(0, len(ciphertext), 2):
+        a, b = ciphertext[i], ciphertext[i+1]
+        row_a, col_a = find_position(matrix, a)
+        row_b, col_b = find_position(matrix, b)
+        
+        if row_a == row_b:
+            plaintext += matrix[row_a][(col_a - 1) % 5] + matrix[row_b][(col_b - 1) % 5]
+        elif col_a == col_b:
+            plaintext += matrix[(row_a - 1) % 5][col_a] + matrix[(row_b - 1) % 5][col_b]
+        else:
+            plaintext += matrix[row_a][col_b] + matrix[row_b][col_a]
+    
+    return plaintext
+
 #================================================================================================
 
 def encrypt_rot13(pt):
